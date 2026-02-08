@@ -4,7 +4,7 @@ import matter from "gray-matter";
 import { unstable_cache } from 'next/cache';
 import { NEXT_PUBLIC_APP_URL } from '../config/config';
 
-const _POSTS_DIRECTORY = path.join(process.cwd(), "content", "posts");
+const _POSTS_DIRECTORY = path.join(process.cwd(), "src", "content", "posts");
 const _CACHE_TAGS = { ALL_POSTS: 'posts', SINGLE_POST: 'post' } as const;
 const _CACHE_REVALIDATE = parseInt(process.env.CACHE_REVALIDATE || '3600', 10);
 
@@ -16,7 +16,7 @@ interface PostData {
   url?: string;
 }
 
-function getPostBySlug(slug: string): PostData | null {
+export function getPostBySlug(slug: string): PostData | null {
   if (!slug) return null;
 
   try {
