@@ -11,7 +11,11 @@ const Navbar = () => {
     <div>
       <ul className="hidden md:flex flex-row gap-6">
         {navlinks.map((link) => (
-          <li key={link.id}><Link href={link.path}>{link.name}</Link></li>
+          <li key={link.id}>
+            <Link href={link.path} className="link-text">
+              {link.name}
+            </Link>
+          </li>
         ))}
       </ul>
 

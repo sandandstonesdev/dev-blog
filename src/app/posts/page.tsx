@@ -1,4 +1,5 @@
 import { getCachedPostData } from '@/utils/posttFetcher'
+import { formatPostDate } from '@/utils/formatters'
 import Link from 'next/link'
 import type { Metadata } from "next";
 
@@ -28,10 +29,13 @@ const Posts = async () => {
   
   return (
     <section className="section-container">
-      <h2 className="heading-responsive mb-8">Posts</h2>
+      <h2 className="heading-responsive text-center mb-8">Posts</h2>
       
-      <ul className="flex flex-col gap-4">
-        {posts.map((post) => (
+      {posts.length === 0 ? (
+        <p className="text-muted">No posts available yet.</p>
+      ) : (
+        <ul className="flex flex-col gap-4">
+          {posts.map((post) => (
           <li key={post.slug} className="group">
             <Link 
               href={`/posts/${post.slug}`}
@@ -41,14 +45,15 @@ const Posts = async () => {
                 {post.title}
               </h3>
               {post.date && (
-                <time className="text-sm text-muted">
-                  {new Date(post.date).toLocaleDateString()}
+                <time className="text-sm text-muted mt-2 block">
+                  {formatPostDate(post.date)}
                 </time>
               )}
             </Link>
           </li>
         ))}
       </ul>
+      )}
     </section>
   )
 }

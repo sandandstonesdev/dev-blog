@@ -1,8 +1,9 @@
 import { baseMetadata } from '@/config/metadata';
 import { NEXT_PUBLIC_APP_URL } from '@/config/config';
-import { getPostBySlug, getPostSlugs } from '@/utils/posttFetcher';
-
-type Params = Promise<{ slug: string}>;
+import { getPostSlugs } from '@/utils/posttFetcher';
+import { isValidSlug } from '@/utils/validators';
+import { formatPostDate } from '@/utils/formatters';
+import type { SlugParams } from '@/types/params';
 
 export async function generateStaticParams() {
   const slugs = getPostSlugs();
@@ -14,9 +15,14 @@ export async function generateStaticPaths() {
   return slugs.map((slug) => `/posts/${slug}`);
 }
 
-export async function generateMetadata({ params }: { params: Params }) {
+export async function generateMetadata({ params }: { params: SlugParams }) {
   const resolvedParams = await params;
   const slug = resolvedParams.slug;
+  
+  if (!isValidSlug(slug)) {
+    return baseMetadata;
+  }
+  
   const { metadata } = await import(`@/content/posts/${slug}.mdx`);
   return {
     ...baseMetadata,
@@ -30,15 +36,34 @@ export async function generateMetadata({ params }: { params: Params }) {
   };
 }
 
-const Post = async ({ params }: { params: Params }) => {
+const Post = async ({ params }: { params: SlugParams }) => {
   const resolvedParams = await params;
   const slug = resolvedParams.slug;
+  
+  if (!isValidSlug(slug)) {
+    throw new Error('Invalid slug');
+  }
+  
   const { default: PostContent, metadata } = await import(`@/content/posts/${slug}.mdx`);
   
   return (
-    <div className="prose prose-lg mx-auto">
-      <PostContent />
-    </div>
+    <article className="prose-section mx-auto px-4 py-8">
+      <header className="mb-8 pb-6 border-b border-gray-300 dark:border-gray-700">
+        <h1 className="heading-page mb-3">
+          {metadata.title}
+        </h1>
+        {metadata.date && (
+          <time className="text-muted">
+            {formatPostDate(metadata.date)}
+          </time>
+        )}
+      </header>
+      
+      {/* Post Content */}
+      <div className="post-content">
+        <PostContent />
+      </div>
+    </article>
   )
 }
 

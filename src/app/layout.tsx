@@ -5,6 +5,7 @@ import "./globals.css";
 
 import Header from "@/components/header";
 import Footer from "@/components/footer";
+import CookieBanner from "@/components/cookieBanner";
 import { NEXT_PUBLIC_APP_URL } from "@/config/config";
 
  
@@ -43,7 +44,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${inter.variable} antialiased`} >
+      <body className={`${inter.variable} antialiased`}>
         <div className="flex flex-col h-screen w-screen">
         <Header />
         <div className="flex grow flex-row max-w-full max-h-full overflow-auto justify-center">
@@ -51,6 +52,7 @@ export default function RootLayout({
         </div>
         <Footer />
         </div>
+        <CookieBanner />
       </body>
     </html>
   );
