@@ -1,8 +1,8 @@
 'use client'
 
 import Link from 'next/link'
-import { navlinks } from '../config/navLinks'
-import MobileMenu from './mobileMenu'
+import { navlinks } from '@/config/navLinks'
+import MobileMenu from './MobileMenu'
 
 const Navbar = () => {
   return (

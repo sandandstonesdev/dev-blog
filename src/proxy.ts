@@ -1,18 +1,19 @@
 import { NextResponse } from 'next/server';
+import { isProd, isDev } from './lib/env';
 
 function getSecurityHeaders() {
   let nonce = '';
-  if (process.env.NODE_ENV === 'production') {
+  if (isProd) {
     nonce = Math.random().toString(36).substring(2, 18);
   }
   let csp = [
     "default-src 'self'",
     // In production, do NOT allow 'unsafe-inline', only allow scripts from self, Vercel Analytics, and with nonce
-    process.env.NODE_ENV === 'production'
+    isProd
       ? `script-src 'self' https://va.vercel-scripts.com 'nonce-${nonce}'`
       : `script-src 'self' 'unsafe-inline' https://va.vercel-scripts.com 'nonce-${nonce}'`,
     // In production, do NOT allow 'unsafe-inline' for styles
-    process.env.NODE_ENV === 'production'
+    isProd
       ? "style-src 'self'"
       : "style-src 'self' 'unsafe-inline'",
     "img-src 'self' blob: data: https:",
@@ -78,7 +79,9 @@ export function proxy(request: Request) {
   const analyticsConsent = cookies['analyticsConsent'] === 'true' ? 'true' : 'false';
   response.headers.set('x-telemetry-consent', telemetryConsent);
   response.headers.set('x-analytics-consent', analyticsConsent);
-  console.log('[proxy] Set x-essential-consent:true, x-telemetry-consent:', telemetryConsent, 'x-analytics-consent:', analyticsConsent);
+  if (isDev) {
+    console.log('[proxy] Set x-essential-consent:true, x-telemetry-consent:', telemetryConsent, 'x-analytics-consent:', analyticsConsent);
+  }
 
   return response;
 }

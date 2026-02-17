@@ -1,8 +1,10 @@
+
 import { OTLPTraceExporter } from '@opentelemetry/exporter-trace-otlp-http'
 import { resourceFromAttributes } from '@opentelemetry/resources'
 import { NodeSDK } from '@opentelemetry/sdk-node'
 import { BatchSpanProcessor } from '@opentelemetry/sdk-trace-node'
 import { ATTR_SERVICE_NAME } from '@opentelemetry/semantic-conventions'
+import { isDev } from './lib/env';
 
 let sdk: NodeSDK | null = null
 let isInitialized = false
@@ -19,7 +21,9 @@ export async function startTelemetry() {
 
   await sdk.start()
   isInitialized = true
-  console.log('✅ Telemetry started')
+  if (isDev) {
+    console.log('✅ Telemetry started')
+  }
 }
 
 export async function stopTelemetry() {
@@ -27,6 +31,8 @@ export async function stopTelemetry() {
     await sdk.shutdown()
     sdk = null
     isInitialized = false
-    console.log('🛑 Telemetry stopped')
+    if (isDev) {
+      console.log('🛑 Telemetry stopped')
+    }
   }
 }

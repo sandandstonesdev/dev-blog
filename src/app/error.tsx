@@ -1,11 +1,8 @@
 'use client';
-import { useEffect } from 'react';
-import clientLogger from '@/utils/clientLogger';
+import { useClientErrorLogger } from '@/lib/hooks/useClientErrorLogger';
 
 export default function Error({ error, reset }: { error: Error; reset: () => void }) {
-  useEffect(() => {
-    clientLogger.error({ message: error.message, stack: error.stack }, 'Client ErrorBoundary');
-  }, [error]);
+  useClientErrorLogger(error);
   return (
     <div className="section-container">
       <h2 className="text-red-600 mb-4">Something went wrong!</h2>

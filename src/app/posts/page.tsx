@@ -1,5 +1,5 @@
-import { getCachedPostData } from '@/utils/postFetcher'
-import { formatPostDate } from '@/utils/formatters'
+import { getCachedPostData } from '@/lib/api/posts/postFetcher'
+import { formatPostDate } from '@/lib/helper/formatters'
 import Link from 'next/link'
 import type { Metadata } from "next";
 

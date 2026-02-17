@@ -12,7 +12,3 @@ export const formatDate = (date: string | Date): string => {
 export const formatPostDate = (date: string): string => {
   return formatDate(date);
 };
-
-export const getCurrentFormattedDate = (): string => {
-  return formatDate(new Date());
-};

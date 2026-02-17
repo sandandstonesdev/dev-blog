@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import { getCurrentFormattedDate } from '@/utils/formatters'
+import { formatDate } from '@/lib/helper/formatters'
 
 export const metadata: Metadata = {
   title: 'Privacy Policy | DevTestBlog',
@@ -13,7 +13,7 @@ export default function PrivacyPage() {
       
       <div className="prose-section">
         <p className="text-muted mb-6">
-          Last updated: {getCurrentFormattedDate()}
+          Last updated: {formatDate(new Date())}
         </p>
 
 

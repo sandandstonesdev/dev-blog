@@ -2,10 +2,10 @@ import { Suspense } from 'react';
 
 import { baseMetadata } from '@/config/metadata';
 import { NEXT_PUBLIC_APP_URL } from '@/config/config';
-import { getPostSlugs } from '@/utils/postFetcher';
-import { isValidSlug } from '@/utils/validators';
-import { formatPostDate } from '@/utils/formatters';
-import type { SlugParams } from '@/types/params';
+import { getPostSlugs } from '@/lib/api/posts/postFetcher';
+import { isValidSlug } from '@/lib/helper/validators';
+import { formatPostDate } from '@/lib/helper/formatters';
+import type { SlugParams } from '@/types/common.types';
 
 export async function generateStaticParams() {
   const slugs = getPostSlugs();

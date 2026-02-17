@@ -1,19 +1,20 @@
+
 import { NextRequest, NextResponse } from 'next/server'
+import serverLogger from '@/lib/api/logging/serverLogger';
 
 export async function POST(request: NextRequest) {
-  const { consent } = await request.json()
-  
+  const { consent } = await request.json();
+  serverLogger.debug({ consent }, 'Received telemetry consent change');
+
   if (consent === true) {
-    // User gave consent - start telemetry
-    const { startTelemetry } = await import('@/instrumentation.node')
-    await startTelemetry()
-    
-    return NextResponse.json({ message: 'Telemetry enabled' })
+    const { startTelemetry } = await import('@/instrumentation.node');
+    await startTelemetry();
+    serverLogger.info('Telemetry enabled');
+    return NextResponse.json({ message: 'Telemetry enabled' });
   } else {
-    // User revoked consent - stop telemetry
-    const { stopTelemetry } = await import('@/instrumentation.node')
-    await stopTelemetry()
-    
-    return NextResponse.json({ message: 'Telemetry disabled' })
+    const { stopTelemetry } = await import('@/instrumentation.node');
+    await stopTelemetry();
+    serverLogger.info('Telemetry disabled');
+    return NextResponse.json({ message: 'Telemetry disabled' });
   }
 }

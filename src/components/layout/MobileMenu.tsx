@@ -2,8 +2,8 @@
 
 import Link from 'next/link';
 import { clsx } from 'clsx';
-import { useState, useEffect } from 'react';
-import { navlinks } from '../config/navLinks';
+import { useState } from 'react';
+import { navlinks } from '@/config/navLinks';
 
 const MobileMenu = () => {
   const [menuOpen, setMenuOpen] = useState(false);

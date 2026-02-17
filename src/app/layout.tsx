@@ -1,15 +1,16 @@
 import React, { Suspense } from 'react';
-import AnalyticsCookieGate from '@/components/AnalyticsCookieGate';
+import Anal from '@/components/ui/Analytics/AnalyticsWrapper';
 
 import type { Metadata } from "next";
 import { Inter } from 'next/font/google'
 
-import "./globals.css";
+import "@/styles/globals.css";
 
-import Header from "@/components/header";
-import Footer from "@/components/footer";
-import CookieBanner from "@/components/cookieBanner";
+import Header from "@/components/layout/Header";
+import Footer from "@/components/layout/Footer";
+import CookieBanner from "@/components/ui/Cookies/CookieBanner";
 import { NEXT_PUBLIC_APP_URL } from "@/config/config";
+import AnalyticsCookieWrapper from '@/components/ui/Analytics/AnalyticsWrapper';
 
  
 const inter = Inter({
@@ -56,9 +57,7 @@ export default function RootLayout({
           <Footer />
         </div>
         <CookieBanner />
-        <Suspense fallback={null}>
-          <AnalyticsCookieGate />
-        </Suspense>
+        <AnalyticsCookieWrapper />
       </body>
     </html>
   );

@@ -2,9 +2,9 @@ import path from "path";
 import fs from "fs";
 import matter from "gray-matter";
 import { unstable_cache } from 'next/cache';
-import { NEXT_PUBLIC_APP_URL } from '../config/config';
-import { CACHE_REVALIDATE } from '../config/server-config';
-import type { PostData } from '../types/post';
+import { NEXT_PUBLIC_APP_URL } from '@/config/config';
+import { CACHE_REVALIDATE } from '@/config/server-config';
+import type { PostData } from '@/types/api.types';
 
 const _POSTS_DIRECTORY = path.join(process.cwd(), "src", "content", "posts");
 const _CACHE_TAGS = { ALL_POSTS: 'posts' } as const;
