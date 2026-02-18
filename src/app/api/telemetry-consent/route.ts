@@ -1,10 +1,11 @@
 
 import { NextRequest, NextResponse } from 'next/server'
 import serverLogger from '@/lib/api/logging/serverLogger';
+import { isDev } from '@/lib/env';
 
 export async function POST(request: NextRequest) {
   const { consent } = await request.json();
-  serverLogger.debug({ consent }, 'Received telemetry consent change');
+  if (isDev) serverLogger.debug({ consent }, 'Received telemetry consent change');
 
   if (consent === true) {
     const { startTelemetry } = await import('@/instrumentation.node');

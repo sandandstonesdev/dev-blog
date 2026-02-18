@@ -1,5 +1,4 @@
-import React, { Suspense } from 'react';
-import Anal from '@/components/ui/Analytics/AnalyticsWrapper';
+import React from 'react';
 
 import type { Metadata } from "next";
 import { Inter } from 'next/font/google'
