@@ -1,6 +1,6 @@
 'use client';
 
-import { BannerContentProps } from "@/types/common.types";
+import type { BannerContentProps } from "@/types/common.types";
 
 
 export default function CookiePreferences({ analytics, setAnalytics, telemetry, setTelemetry }: BannerContentProps) {
@@ -14,6 +14,7 @@ export default function CookiePreferences({ analytics, setAnalytics, telemetry, 
           disabled
           className="accent-green-600 dark:accent-green-400 w-4 h-4"
           aria-label="Essential cookies (required)"
+          data-testid="essential-checkbox"
         />
         <span className="font-semibold text-gray-800 dark:text-gray-100">Essential cookies (required)</span>
       </label>
@@ -23,7 +24,8 @@ export default function CookiePreferences({ analytics, setAnalytics, telemetry, 
           checked={analytics}
           onChange={e => setAnalytics(e.target.checked)}
           className="accent-blue-600 dark:accent-blue-400 w-4 h-4"
-          aria-label="Enable analytics cookies"
+          aria-label="Analytics cookies"
+          data-testid="analytics-checkbox"
         />
         <span className="text-gray-800 dark:text-gray-100">Analytics cookies</span>
       </label>
@@ -33,7 +35,8 @@ export default function CookiePreferences({ analytics, setAnalytics, telemetry, 
           checked={telemetry}
           onChange={e => setTelemetry(e.target.checked)}
           className="accent-purple-600 dark:accent-purple-400 w-4 h-4"
-          aria-label="Enable telemetry cookies"
+          aria-label="Telemetry cookies"
+          data-testid="telemetry-checkbox"
         />
         <span className="text-gray-800 dark:text-gray-100">Telemetry cookies</span>
       </label>

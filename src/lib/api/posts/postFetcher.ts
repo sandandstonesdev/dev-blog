@@ -1,5 +1,5 @@
-import path from "path";
-import fs from "fs";
+import path from "node:path";
+import fs from "node:fs";
 import matter from "gray-matter";
 import { unstable_cache } from 'next/cache';
 import { NEXT_PUBLIC_APP_URL } from '@/config/config';

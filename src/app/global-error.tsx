@@ -10,7 +10,7 @@ export default function GlobalError({
 }) {
   useClientErrorLogger(error);
   return (
-    <html>
+    <html lang="en">
       <body>
         <div className="p-5 max-w-2xl mx-auto">
           <h2 className="text-red-600 mb-4">Something went wrong!</h2>
@@ -21,6 +21,7 @@ export default function GlobalError({
             </p>
           )}
           <button
+            type="button"
             onClick={reset}
             className="btn-primary"
           >
