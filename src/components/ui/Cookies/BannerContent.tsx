@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import CookiePreferences from "@/components/ui/Cookies/CookiePreferences";
-import { BannerContentProps } from "@/types/common.types";
+import type { BannerContentProps } from "@/types/common.types";
 
 export default function BannerContent({ analytics, setAnalytics, telemetry, setTelemetry }: BannerContentProps) {
   return (

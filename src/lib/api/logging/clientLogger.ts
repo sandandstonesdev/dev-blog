@@ -16,7 +16,7 @@ const clientLogger = pino({
           meta = { ...logEvent.messages[1] } as Record<string, unknown>;
         }
         SENSITIVE_KEYS.forEach(key => {
-          if (Object.prototype.hasOwnProperty.call(meta, key)) meta[key] = '[REDACTED]';
+          if (Object.hasOwn(meta, key)) meta[key] = '[REDACTED]';
         });
         const body = JSON.stringify({ level, message: msg, meta });
         navigator.sendBeacon('/api/client-log', body);

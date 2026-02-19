@@ -1,5 +1,5 @@
 
-import { NextRequest, NextResponse } from 'next/server'
+import { type NextRequest, NextResponse } from 'next/server'
 import serverLogger from '@/lib/api/logging/serverLogger';
 import { isDev } from '@/lib/env';
 

@@ -46,6 +46,8 @@ export default function CookieBanner() {
           key={bannerKey}
           location="bottom"
           buttonText="Save Preferences"
+          ariaAcceptLabel='Save Preferences'
+          ariaDeclineLabel='Decline'
           containerClasses="fixed bottom-0 left-0 w-full z-50 bg-white dark:bg-gray-900 border-t border-gray-200 dark:border-gray-800 shadow-lg px-2 py-4 sm:px-4 sm:py-6"
           contentClasses="flex flex-col gap-4 sm:gap-0 sm:flex-row sm:items-center sm:justify-between max-w-5xl mx-auto"
           buttonClasses="btn-primary text-sm sm:text-base"
