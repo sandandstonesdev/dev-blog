@@ -1,5 +1,5 @@
 
-# Blog-Test
+# Dev-Blog
 
 This is a custom Next.js blog project. Easily add posts in `content/posts/` using MDX.
 
