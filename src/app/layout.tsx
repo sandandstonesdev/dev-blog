@@ -1,7 +1,6 @@
 import type React from 'react';
 
 import type { Metadata } from "next";
-import { Inter } from 'next/font/google'
 
 import "@/styles/globals.css";
 
@@ -12,11 +11,6 @@ import { NEXT_PUBLIC_APP_URL } from "@/config/config";
 import AnalyticsCookieWrapper from '@/components/ui/Analytics/AnalyticsWrapper';
 
  
-const inter = Inter({
-  variable: "--font-inter",
-  subsets: ["latin"],
-});
-
 export const metadata: Metadata = {
   title: "DevTestBlog",
   description: "DevTestBlog deployed",
@@ -46,8 +40,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={inter.variable}>
-      <body className={`${inter.variable} antialiased`}>
+    <html lang="en">
+      <body className="antialiased">
         <div className="flex flex-col h-screen w-screen">
           <Header />
           <div className="flex grow flex-row max-w-full max-h-full overflow-auto justify-center">
